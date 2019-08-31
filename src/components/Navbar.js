@@ -2,14 +2,39 @@ import React from 'react'
 import { Link } from 'gatsby'
 import github from '../img/github-icon.svg'
 import logo from '../img/logo.svg'
+import { TweenLite, TweenMax } from 'gsap';
 
 const Navbar = class extends React.Component {
   constructor(props) {
     super(props)
+
+    this.myElement = null;
+    // reference to the animation
+    this.myTween = null;
+
+    this.myText = null
+
     this.state = {
       active: false,
       navBarActiveClass: '',
     }
+  }
+
+  componentDidMount(){
+    // use the node ref to create the animation
+    // this.myTween = TweenLite.to(this.myElement, 1, {x: 100, y: 100});
+    // TweenMax.from(this.myText, 1, {opacity:0})
+    console.log(this.myText)
+  }
+
+  over(){
+    TweenMax.to(this.myText, 0.5, {backgroundColor:"red"})
+    //TweenMax.to($(this).find("span"), 0.3, {rotation:360, scale:2, x:50, delay:0.6})
+  }
+  
+  out(){
+    TweenMax.to(this.myText, 0.5, {backgroundColor:"blue"})
+    //TweenMax.to($(this).find("span"), 0.3, {rotation:0, scale:1, x:0, overwrite:"all"})
   }
 
   toggleHamburger = () => {
@@ -67,7 +92,7 @@ const Navbar = class extends React.Component {
                 Products
               </Link>
               <Link className="navbar-item" to="/blog">
-                Blog
+                Services
               </Link>
               <Link className="navbar-item" to="/contact">
                 Contact
@@ -76,7 +101,7 @@ const Navbar = class extends React.Component {
                 Form Examples
               </Link>
             </div>
-            <div className="navbar-end has-text-centered">
+            {/* <div className="navbar-end has-text-centered">
               <a
                 className="navbar-item"
                 href="https://github.com/netlify-templates/gatsby-starter-netlify-cms"
@@ -87,7 +112,7 @@ const Navbar = class extends React.Component {
                   <img src={github} alt="Github" />
                 </span>
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
       </nav>
