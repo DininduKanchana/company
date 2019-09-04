@@ -4,6 +4,7 @@ import { Link, graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
 import Features from '../components/Features'
+import Card from '../components/Card'
 import BlogRoll from '../components/BlogRoll'
 import TextLoop from "react-text-loop";
 import Img from "gatsby-image"
@@ -56,13 +57,6 @@ const CarouselUI = ({ position, total, handleClick, children }) => (
       <Arrow onClick={handleClick} data-position={position - 1}>{'<'}</Arrow>
       <Arrow right onClick={handleClick} data-position={position + 1}>{'>'}</Arrow>
     </Children>
-    <Dots>
-      {Array(...Array(total)).map( (val, index) =>
-        <Dot key={index} onClick={handleClick} data-position={index}>
-          {index === position ? '● ' : '○ ' }
-        </Dot>
-      )}
-    </Dots>
   </Container>
 );
 
@@ -228,10 +222,33 @@ export const IndexPageTemplate = ({
                   </div>
                   <div className="columns">
                     <div className="column is-12">
+                      
                       <h3 className="has-text-weight-semibold is-size-2">
                         {heading}
                       </h3>
-                      <p>{description}</p>
+
+                      
+                        <div className="columns">
+                          <Fade big delay={1000}>
+                            <div className="column">
+                              <Card data={{text : "Web Designing", backgroundColor: 'rgb(241, 147, 31)'}}/>
+                            </div>
+                          </Fade>
+                          <Fade big delay={2000}>
+                            <div className="column">
+                              <Card data={{text : "Web Development", backgroundColor: 'rgb(72, 147, 55)'}}/>
+                            </div>
+                          </Fade>
+                          <Fade big delay={3000}>
+                            <div className="column">
+                              <Card data={{text : "Software Development", backgroundColor: 'rgb(123, 67, 212)'}}/>
+                            </div>
+                          </Fade> 
+                        </div>
+
+                   
+
+                      <h4>{description}</h4>              
                     </div>
                   </div>
                   <Features gridItems={intro.blurbs} />
